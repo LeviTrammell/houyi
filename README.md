@@ -2,35 +2,59 @@
 
 #### End Goal
 The end goal is to be able to do complex queries such as this :
-`query: [{
-    matchFilter: {
-        type: 1,
-        tags: ['hello', 'world'],
-        '-tags': ['foo', 'bar']
-    },
-    rangeFilter:{
-        number: {
+```
+filter: [{
+    match: [
+        {
+        	field: 'type',
+        	value: 1
+        },
+        {
+        	field: 'tags',        	
+        	value: ['hello', 'world']
+        },
+        {
+        	field: '-tags',
+        	value: ['foo', 'bar']
+    	}
+    ],
+    range:[
+        {
+        	field: 'number',
             start: 100,
             end: 200
         }, 
-        sort_date: {
+        {
+        	field; 'date',
             start: startDate,
             end: endDate
         }
-    }
+    ]
 },
 {
-    matchFilter: {
-        type: 2,
-        tags: ['foo', 'bar'],
-        '-tags': ['hello', 'world']
-    },
-    rangeFilter:{
-        number: {
-            start: 300            
+    match: [
+        {
+        	field: 'type',
+        	value: 2
+        },
+        {
+        	field: 'tags',        	
+        	value: 'bar'
+        },
+        {
+        	field: '-tags',
+        	value: ['hello', 'world']
+    	}
+    ],
+    range:[
+        {
+        	field: 'number',            
+            end: 200
         }, 
-        sort_date: {            
-            end: endDate
+        {
+        	field; 'date',
+            start: startDate            
         }
-    }
-}];`
+    ]
+}];
+```
