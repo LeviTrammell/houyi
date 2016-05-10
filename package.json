@@ -1,0 +1,30 @@
+{
+  "name": "houyi",
+  "version": "0.0.1",
+  "description": "A solr client using promises, and an object-based query language.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeviTrammell/houyi.git"
+  },
+  "keywords": [
+    "solr",
+    "client",
+    "promise",
+    "promises",
+    "object",
+    "query"
+  ],
+  "author": "Levi Trammell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeviTrammell/houyi/issues"
+  },
+  "homepage": "https://github.com/LeviTrammell/houyi#readme",
+  "dependencies": {
+    "request-promise": "^3.0.0"
+  }
+}
