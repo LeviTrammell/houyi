@@ -2,7 +2,8 @@
 
 #### End Goal
 The end goal is to be able to do complex queries such as this :
-`query: [{
+```
+query: [{
     matchFilter: {
         type: 1,
         tags: ['hello', 'world'],
@@ -33,4 +34,5 @@ The end goal is to be able to do complex queries such as this :
             end: endDate
         }
     }
-}];`
+}];
+```
