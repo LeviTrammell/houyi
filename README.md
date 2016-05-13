@@ -1,16 +1,18 @@
-# houyi
+# houyi - Promise based solr node.js client
 
 ### About
 
-Houyi is a Solr Client built for the modern-day node. It's driven by promises, and a query language similar to that seen on the elasticsearch node client.
+Houyi is a Solr Client built for the modern-day node. It's driven by promises, and a query language similar to that seen on the official elasticsearch node client.
 
 ### Installation instructions
 
-`npm install --save houyi`
+```console
+npm install --save houyi
+```
 
 ### Usage
 
-```
+```js
 var houyi = require('houyi');
 
 var client = new houyi({
@@ -54,7 +56,7 @@ client.search({
 ```
 
 ###Add/Update Documents
-```
+```js
 client.add({
     id: 'myrandom.id',
     title: 'the title I chose'
@@ -62,27 +64,27 @@ client.add({
 ```
 
 ###Delete Documents
-```
+```js
 client.delete({
     id: 'myrandom.id'
 });
 ```
 
 ###Commit
-```
+```js
 client.commit();
 ```
 
 ###Ping Solr
 Check to ensure that you can connect to your solr box :
-```
+```js
 client.ping().then(function(response) {
     console.log(response) 
 });
 ```
 
 ###Chaining Queries
-```
+```js
 client.add({
     id:'test',
     title: 'just testing this out'
@@ -104,7 +106,7 @@ client.add({
 ###Master/Slave Support
 Your setup might not be completely up-to-date with the latest and greatest Solr Cloud. This is not a problem. You may wish to only write to master, and that can be done by using the "master" option with the houyi client parameters
 
-```
+```js
 var client = new houyi({
     host: '127.0.0.1' 
     port: '8983',
@@ -118,9 +120,9 @@ var client = new houyi({
 
 ###Big Int Support
 
-Parse big integers using the option "bigint = true" within the houyi client parameters. This is set to false by default.
+Parse big integers by setting bigint to true within the houyi client parameters. This is set to false by default.
 
-```
+```js
 var client = new houyi({
     host: '127.0.0.1' 
     port: '8983',
