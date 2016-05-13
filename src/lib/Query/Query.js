@@ -13,13 +13,14 @@ class Query {
     build(query) {
         _.forEach(query, (value, key) => {
             switch (key) {
+                case 'query':
                 case 'q':
                 case 'fq':
                     query[key] = new Filter(value).toString();
                     break;
-                case 'fl':                
+                case 'fl':
                     if (value instanceof Array) query[key] = value.join(',');
-                    break;                
+                    break;
             }
         });
         

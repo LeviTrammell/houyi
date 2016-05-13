@@ -7,6 +7,10 @@ const JSONbig = require('json-bigint');
 const rp = require('request-promise');
 const _ = require('lodash');
 
+const jsonSerializer = (bigint) => {
+    return bigint ? JSONbig : JSON;
+}
+
 class Client {
     constructor(options) {
         this.options = {
@@ -25,7 +29,7 @@ class Client {
                 port : options.master.port || options.port,
                 core : options.master.core || options.core,
                 path : options.master.path || options.path,
-                agent : options.master.agent || options.agent    
+                agent : options.master.agent || options.agent
             }
         }
         else {
@@ -41,14 +45,38 @@ class Client {
         JSON = this.options.bigint ? JSONbig : JSON;
     }
 
-    
-
     add(documents) {
         documents = documents instanceof Array ? documents : [documents];
         return this.update(documents);
     }
 
-    softCommit(){
+    delete(query, options) {
+        query = new Query(query).toString();
+        return this.update({
+            delete: {
+                query
+            }
+        }, options);
+    }
+
+    search(query) {
+        query = new Query(query).query;
+        return this.get(constants.HANDLERS.SELECT, query);
+    }
+
+    spell(query) {
+
+    }
+
+    ping() {
+        return this.get(constants.HANDLERS.PING);
+    }
+
+    prepareCommit() {
+        return this.update({},{ prepareCommit : true });
+    }
+
+    softCommit() {
         return this.update({},{ softCommit : true });
     }
 
@@ -58,11 +86,16 @@ class Client {
         });
     }
 
-    search(query) {
-        query = new Query(query).query;        
-        return this.get(constants.HANDLERS.SELECT, query);
+    optimize(options) {
+        return this.update({
+            optimize: options || {}
+        })
     }
-    
+
+    rollback() {
+        return this.update({ rollback: {} });
+    }
+
     update(data, options) {
         return this.post(constants.HANDLERS.UPDATE, data, options);
     }
@@ -70,56 +103,29 @@ class Client {
     get(handler, query) {
         let options = {
             uri: `http://${this.options.host}:${this.options.port}${this.options.path}/${this.options.core}/${handler}`,            
-            qs: _.merge({wt:'json'}, query),
-            json: true
+            qs: _.merge({wt:'json'}, query)        
         }
 
-        return rp(options);
+        return rp(options).then(response => {
+            return jsonSerializer(this.options.bigint).parse(response);
+        });
     }
 
     post(handler, data, options) {
-        options = {
+        data = jsonSerializer(this.options.bigint).stringify(data);
+        options = {            
             method: 'POST',
             uri: `http://${this.options.master.host}:${this.options.master.port}${this.options.master.path}/${this.options.master.core}/${handler}`,
             qs: _.merge({wt:'json'}, options),
             body: data,
-            json: true
+            headers: {
+                'User-Agent': options.master.agent,
+                'Content-Type': 'application/json'
+            }
         }
 
         return rp(options);
     }
 }
 
-let client = new Client({
-    core:'muggy',
-    bigint:true
-});
-// client.search({
-//     fl: ['title', 'id'],
-//     fq: {
-//         'id': {
-//             or: [
-//                 'testid',
-//                 'otherid'
-//             ]
-//         }
-//     }
-// }).then(response => {
-//     console.log(response.response.docs);
-// });
-client.add({
-    id:'latertest',
-    title: 'jsdf this one out'
-}).then(response => {
-    return client.commit()    
-}).then(response => {
-    return client.search({
-        fq: {
-            id: 'latertest'
-        }
-    })
-}).then(response => {
-    console.log(response);
-}).catch(err => {
-    console.log(err);
-})
+module.exports = Client;

@@ -1,2 +1,1 @@
-exports.Query = require('./Query');
-exports.Client = require('./Client');
+module.exports = require('./Client');

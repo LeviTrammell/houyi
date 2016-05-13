@@ -1,6 +1,7 @@
 module.exports = {
     HANDLERS: {
         SELECT: 'select',
-        UPDATE: 'update'
+        UPDATE: 'update',
+        PING: 'admin/ping'
     }
 }
