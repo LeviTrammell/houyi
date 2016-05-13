@@ -33,12 +33,12 @@ let matchFilter = matchFilter => {
         }
         return `${filter.field}:${filter.value}`;
     }
-    if (rangeFilter instanceof Array) {
-        rangeFilter = '(' + rangeFilter.map(filter => build(filter)).join(' AND ') + ')';        
+    if (matchFilter instanceof Array) {
+        matchFilter = '(' + matchFilter.map(filter => build(filter)).join(' AND ') + ')';        
     } else {
-        rangeFilter = build(rangeFilter);
+        matchFilter = build(matchFilter);
     }
-    return rangeFilter;
+    return matchFilter;
 }
 
 let rangeFilter = rangeFilter => {

@@ -4,7 +4,7 @@
   "description": "A solr client using promises, and an object-based query language.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,11 @@
   },
   "homepage": "https://github.com/LeviTrammell/houyi#readme",
   "dependencies": {
+    "lodash": "^4.12.0",
     "request-promise": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "should": "^8.3.1"
   }
 }
