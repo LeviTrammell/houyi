@@ -4,7 +4,9 @@ const Filter = require('./Filter');
 const _ = require('lodash');
 
 class Query {
-    constructor(query) {        
+    constructor(query) {
+        if (query.q === undefined) query.q = { '*':'*' };
+
         this.query = this.build(query);
     }
 

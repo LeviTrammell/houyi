@@ -1,5 +1,6 @@
 module.exports = {
     HANDLERS: {
-        SELECT: 'select'
+        SELECT: 'select',
+        UPDATE: 'update'
     }
 }
