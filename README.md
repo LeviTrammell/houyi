@@ -2,7 +2,7 @@
 
 ### About
 
-Houyi is a Solr Client built for the modern-day node. It's driven by promises, and a query language 
+Houyi is a Solr Client built for the modern-day node. It's driven by promises, and a query language similar to that seen on the elasticsearch node client.
 
 ### Installation instructions
 
