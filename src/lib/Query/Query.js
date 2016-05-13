@@ -1,6 +1,6 @@
 "use strict";
 
-const Filter = require('./').Filter;
+const Filter = require('./Filter');
 const _ = require('lodash');
 
 class Query {

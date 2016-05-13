@@ -1,7 +1,7 @@
 "use strict";
 
-const Field = require('.').Field;
-const BooleanOperation = require('.').BooleanOperation;
+const Field = require('./Field');
+const BooleanOperation = require('./BooleanOperation');
 
 const _ = require('lodash');
 
@@ -64,7 +64,6 @@ class Filter {
             filterString = '(' + filter.value.map(filters => this.build(filters)).join(filter.operator) + ')';
         } else if (filter.start || filter.end) filterString += rangeFilter(filter.start, filter.end);
         else filterString = filter;  
-        
         
         return filterString;
     }

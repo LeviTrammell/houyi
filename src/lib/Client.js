@@ -39,8 +39,8 @@ class Client {
 
     search(query) {
         query = new Query(query).query;
-        options = {
-            uri: `${this.options.host}:${this.options.port}/${this.options.path}/${this.options.core}/${constants.HANDLERS.SELECT}`,
+        let options = {
+            uri: `${this.options.host}:${this.options.port}${this.options.path}${this.options.core}/${constants.HANDLERS.SELECT}`,
             qs: query
         }
         console.log(options);
