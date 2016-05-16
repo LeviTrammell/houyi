@@ -25,7 +25,9 @@ class Filter {
                 && !(value instanceof Array) 
                 && !value.start
                 && !value.end) value = this.parse(value);
-            
+            if (value instanceof Array && value[0] instanceof Object) {
+                value = _.map(value, value => this.parse(value));
+            }
             switch (key) {
                 case 'or':
                     return new BooleanOperation({
