@@ -25,9 +25,10 @@ class Filter {
                 && !(value instanceof Array) 
                 && !value.start
                 && !value.end) value = this.parse(value);
-            if (value instanceof Array && value[0] instanceof Object) {
-                value = _.map(value, value => this.parse(value));
-            }
+            if ((key === 'or' || key === 'and') 
+                && value instanceof Array 
+                && typeof value[0] === 'object') value = _.map(value, value => this.parse(value));
+                            
             switch (key) {
                 case 'or':
                     return new BooleanOperation({
@@ -87,3 +88,11 @@ class Filter {
 }
 
 module.exports = Filter;
+
+let j = new Filter({
+    module_type_id: {
+        or:[1, 2, 3]
+    }
+});
+console.log(j.filter[0].value);
+console.log(j.filterString);

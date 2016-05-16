@@ -1,6 +1,6 @@
 {
   "name": "houyi",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "A solr client using promises, and an object-based query language.",
   "main": "index.js",
   "scripts": {
