@@ -28,7 +28,7 @@ class Filter {
             if ((key === 'or' || key === 'and') 
                 && value instanceof Array 
                 && typeof value[0] === 'object') value = _.map(value, value => this.parse(value));
-                            
+
             switch (key) {
                 case 'or':
                     return new BooleanOperation({
@@ -40,7 +40,7 @@ class Filter {
                     return new BooleanOperation({
                         operator: ' AND ',
                         value
-                    })                    
+                    });
                     break;
                 default:
                     return new Field({
@@ -88,11 +88,3 @@ class Filter {
 }
 
 module.exports = Filter;
-
-let j = new Filter({
-    module_type_id: {
-        or:[1, 2, 3]
-    }
-});
-console.log(j.filter[0].value);
-console.log(j.filterString);
