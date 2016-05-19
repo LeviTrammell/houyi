@@ -79,7 +79,7 @@ class Filter {
     } else {
       results = vals.join();
     }
-
+    
     return results;
   }
 
