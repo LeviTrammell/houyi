@@ -1,5 +1,7 @@
 # houyi - Promise based solr node.js client
 
+[![Build Status](https://travis-ci.org/LeviTrammell/houyi.svg?branch=master)](https://travis-ci.org/LeviTrammell/houyi)
+
 ### About
 
 Houyi is a Solr Client built for the modern-day node. It's driven by promises, and a query language similar to that seen on the official elasticsearch node client.
