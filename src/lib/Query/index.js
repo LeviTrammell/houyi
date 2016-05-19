@@ -1,4 +1,5 @@
-exports.Query = require('./Query');
+exports.Query            = require('./Query');
 exports.BooleanOperation = require('./BooleanOperation');
-exports.Field = require('./Field');
-exports.Filter = require('./Filter');
+exports.ToOperation      = require('./ToOperation');
+exports.FieldOperation   = require('./FieldOperation');
+exports.Filter           = require('./Filter');
