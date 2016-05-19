@@ -1,7 +1,7 @@
 'use strict';
 
 const should = require('chai').should;
-const Filter = require(process.cwd() + '/src/Lib/Query').Filter;
+const Filter = require('../../src/lib/Query').Filter;
 
 describe('Filter', function() {
   describe('By Value', function() {
